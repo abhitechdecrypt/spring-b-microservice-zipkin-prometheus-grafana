@@ -1,0 +1,7 @@
+# ignorint the pdf file form committing to the git repository
+*.pdf
+
+# ignoring the .metadata file form commit to the git repository
+.metadata
+# Ignoring the ZIP folder form commit to the git repository
+ZIP
