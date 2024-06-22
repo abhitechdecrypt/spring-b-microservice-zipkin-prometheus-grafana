@@ -13,10 +13,18 @@ public interface PropertyServices {
 	 */
 	Property registerProperty(Property property);
 
-//Get gives all Properties
+	/**
+	 * <h1>Get gives all Properties</h1>
+	 * @return List<Property>
+	 */
 	List<Property> listAllProperties();
 
-//	 Get information about a particular Property 
+
+	/**
+	 * <h1>Get information about a particular Property </h1>
+	 * @param p_id
+	 * @return Property
+	 */
 	Property getPropertyById(Integer p_id);
 
 	// Get information about a particular Property searching by Title of the
