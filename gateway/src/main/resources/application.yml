@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: gatewayserver
+  profiles:
+    active:
+    - prod
+  config:
+    import: optional:configserver:http://localhost:8080/
+# gateway configuration
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true  
+          
+resilience4j.circuitbreaker:
+    configs:
+        default:
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 10
+            waitDurationInOpenState: 1000
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
+            registerHealthIndicator: true  
+          
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      enabled: true
+  info:
+    env:
+      enabled: true
+      management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+info:
+  app:
+    name: "gatewayserver"
+    description: "Property Gateway Server Application"
+    version: "1.0.0"
+
+logging:
+  level:
+    com:
+      eazybytes:
+        gatewayserver: DEBUG
+

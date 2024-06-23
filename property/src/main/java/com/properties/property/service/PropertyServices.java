@@ -1,5 +1,6 @@
 package com.properties.property.service;
 
+import com.properties.property.dto.PropertyRequest;
 import com.properties.property.model.Property;
 import java.util.List;
 
@@ -11,38 +12,69 @@ public interface PropertyServices {
 	 * @param property
 	 * @return Property
 	 */
-	Property registerProperty(Property property);
+	Property registerProperty(PropertyRequest property);
 
 	/**
 	 * <h1>Get gives all Properties</h1>
+	 * 
 	 * @return List<Property>
 	 */
 	List<Property> listAllProperties();
 
-
 	/**
-	 * <h1>Get information about a particular Property </h1>
+	 * <h1>Get information about a particular Property</h1>
+	 * 
 	 * @param p_id
 	 * @return Property
 	 */
 	Property getPropertyById(Integer p_id);
 
-	// Get information about a particular Property searching by Title of the
-	// property
+	/**
+	 * <h1>Get information about a particular Property searching by Title of
+	 * the</h1>
+	 * 
+	 * @param title
+	 * @return Property
+	 */
 	Property getPropertyByTitle(String title);
 
-	// Get list of Properties searching by location
+	/**
+	 * <h1>Get list of Properties searching by location</h1>
+	 * 
+	 * @param location
+	 * @return List<Property>
+	 */
 	List<Property> getListOfPropertyByLoc(String location);
 
-//	Get list of Properties searching by type 
+	/**
+	 * <h1>Get list of Properties searching by type</h1>
+	 * 
+	 * @param type
+	 * @return
+	 */
 	List<Property> getListOfPropertyByType(String type);
 
-	// Get list of Properties searching by price
+	/**
+	 * <h1>Get list of Properties searching by price</h1>
+	 * 
+	 * @param price
+	 * @return List<Property>
+	 */
 	List<Property> getListOfPropertyByprice(double price);
 
-	// Delete Deletes a Property
-	Property deleteProperty(Property property);
+	/**
+	 * <h1>Delete Deletes a Property</h1>
+	 * 
+	 * @param property
+	 * @return Property
+	 */
+	String deleteProperty(int propertyId);
 
-//Put updates a particular Property
-	Property updateProperty(Property property);
+	/**
+	 * <h1>Put updates a particular Property</h1>
+	 * 
+	 * @param property
+	 * @return Property
+	 */
+	Property updateProperty(PropertyRequest property, int p_id);
 }

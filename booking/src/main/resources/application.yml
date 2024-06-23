@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: booking
+  profiles:
+    active:
+    - prod  
+  config:
+    import: optional:configserver:http://localhost:8080/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  
+  info:
+    env:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+        
+resilience4j:
+  circuitbreaker:
+    instances:
+        myBookingcircuitBreaker:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 3
+            slidingWindowType: TIME_BASED
+            minimumNumberOfCalls: 20
+            waitDurationInOpenState: 50s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
+#            
+#resilience4j.retry:
+#  configs:
+#    default:
+##      maxRetryAttempts: 3
+#      waitDuration: 500
+#      enableExponentialBackoff: true
+#      exponentialBackoffMultiplier: 2
